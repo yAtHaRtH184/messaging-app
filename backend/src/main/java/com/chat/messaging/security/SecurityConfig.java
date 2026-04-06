@@ -41,6 +41,7 @@ public class SecurityConfig {
                                 "/**/*.js",
                                 "/**/*.css"
                         ).permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .anyRequest().authenticated()
                 )
 
@@ -59,7 +60,10 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Add BOTH possible ports Vite uses
-        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
+        configuration.setAllowedOrigins(Arrays.asList(
+         "http://localhost:5173",
+        "https://messaging-app-xdfc.vercel.app"
+        ));
 
         // Allow all standard methods
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
