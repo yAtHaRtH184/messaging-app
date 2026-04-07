@@ -1,5 +1,5 @@
 import { Client } from '@stomp/stompjs';
-import SockJS from 'sockjs-client/dist/sockjs.js';
+import SockJS from 'sockjs-client';
 import { WS_URL, STOMP_SUBSCRIBE, STOMP_SEND } from '../utils/constants';
 
 class WebSocketService {
