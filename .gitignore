@@ -7,3 +7,6 @@ logs/
 
 # OS
 Thumbs.db
+
+target/
+backend/target/
