@@ -45,7 +45,7 @@ class WebSocketService {
       return;
     }
     this.client.publish({
-      destination: STOMP_SEND(chatroomId),
+      destination: STOMP_SEND(),
       body: JSON.stringify(message),
     });
   }
