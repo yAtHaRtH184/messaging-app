@@ -60,9 +60,9 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Add BOTH possible ports Vite uses
-        configuration.setAllowedOrigins(Arrays.asList(
-         "http://localhost:5173",
-        "https://messaging-app-xdfc.vercel.app"
+        configuration.setAllowedOriginPatterns(Arrays.asList(
+                "http://localhost:5173",
+                "https://messaging-app-xdfc.vercel.app"
         ));
 
         // Allow all standard methods
@@ -73,6 +73,7 @@ public class SecurityConfig {
 
         // Required for tokens/cookies
         configuration.setAllowCredentials(true);
+        configuration.setExposedHeaders(Arrays.asList("Authorization"));
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         // Apply these rules to ALL endpoints
         source.registerCorsConfiguration("/**", configuration);
