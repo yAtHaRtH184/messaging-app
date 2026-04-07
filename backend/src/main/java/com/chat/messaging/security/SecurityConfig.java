@@ -56,29 +56,24 @@ public class SecurityConfig {
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+        public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Add BOTH possible ports Vite uses
         configuration.setAllowedOriginPatterns(Arrays.asList(
                 "http://localhost:5173",
-                "https://messaging-app-xdfc.vercel.app"
+                "https://*.vercel.app"
         ));
 
-        // Allow all standard methods
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-
-        // Allow all headers (like Authorization, Content-Type)
+        configuration.setAllowedMethods(Arrays.asList("*"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
-
-        // Required for tokens/cookies
         configuration.setAllowCredentials(true);
         configuration.setExposedHeaders(Arrays.asList("Authorization"));
+
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        // Apply these rules to ALL endpoints
         source.registerCorsConfiguration("/**", configuration);
+
         return source;
-    }
+        }
     // 🔐 Authentication manager
     @Bean
     public AuthenticationManager authenticationManager(
