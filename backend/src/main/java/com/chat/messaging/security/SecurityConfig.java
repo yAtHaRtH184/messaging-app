@@ -36,18 +36,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
 
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/auth/**",
-                                "/ws/**",
-                                "/chat.html",
-                                "/**/*.html",
-                                "/**/*.js",
-                                "/**/*.css"
-                        ).permitAll()
-
-                        // ✅ VERY IMPORTANT: allow preflight
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/ws/**").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-
                         .anyRequest().authenticated()
                 )
 
